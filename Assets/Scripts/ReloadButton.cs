@@ -5,9 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class ReloadButton : MonoBehaviour
 {
-    void Start() {   
-    }
-
     void Update() {
         if (Input.GetKeyDown(KeyCode.R)) {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);

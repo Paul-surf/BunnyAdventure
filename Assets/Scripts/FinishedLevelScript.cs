@@ -7,7 +7,7 @@ public class FinishedLevelScript : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.tag == "Player") {
-            SceneManager.LoadScene("MainHub", LoadSceneMode.Additive);
+            SceneManager.LoadScene("MainHub", LoadSceneMode.Single);
         }
     }
 }
