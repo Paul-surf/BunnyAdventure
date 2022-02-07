@@ -9,8 +9,8 @@ public class KeyScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.tag == "Player") {
             key += 1;
-            Destroy(gameObject);
             FinalCourse.SetActive(true);
+            Destroy(gameObject);
         }
     }
 }
