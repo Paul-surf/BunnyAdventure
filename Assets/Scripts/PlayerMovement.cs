@@ -13,7 +13,6 @@ public class PlayerMovement : MonoBehaviour
     private float _startJumpPower;
     private float _startSpeed;
     public bool CanJump = true;
-    // Start is called before the first frame update
     void Start()
     {
         RB = GetComponent<Rigidbody2D>();
@@ -21,8 +20,6 @@ public class PlayerMovement : MonoBehaviour
         _startSpeed = speed;
         _startJumpPower = JumpPower;
     }
-
-    // Update is called once per frame
     void Update()
     {
         if(TextMaker.LimitPlayerMovement == false) {
@@ -84,6 +81,20 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("EnterLevel", true);
             StartCoroutine(AnimationWait());
         }
+        if (collision.tag == "Lvl2" && transform.position.x < 7.269-2.63f) {
+            RB.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezePositionX;
+            transform.position = new Vector2(7.269f - 2.63f, 0.3237126f - 2.63f);
+            anim.SetBool("EnterLevel", true);
+            StartCoroutine(AnimationWait2());
+        }
+        if (collision.tag == "Lvl3") {
+            anim.SetBool("EnterLevel", true);
+            StartCoroutine(AnimationWait3());
+        }
+        if (collision.tag == "Lvl4") {
+            anim.SetBool("EnterLevel", true);
+            StartCoroutine(AnimationWait4());
+        }
     }
 
     IEnumerator AnimationWait() {
@@ -91,4 +102,16 @@ public class PlayerMovement : MonoBehaviour
         SceneManager.LoadScene(2, LoadSceneMode.Single);
     }
 
+    IEnumerator AnimationWait2()  {
+        yield return new WaitForSeconds(0.8f);
+        SceneManager.LoadScene(3, LoadSceneMode.Single);
+    }
+    IEnumerator AnimationWait3() {
+        yield return new WaitForSeconds(0.8f); 
+        SceneManager.LoadScene(4, LoadSceneMode.Single);
+    }
+    IEnumerator AnimationWait4() {
+        yield return new WaitForSeconds(0.8f);
+        SceneManager.LoadScene(5, LoadSceneMode.Single);
+    }
 }
