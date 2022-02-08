@@ -81,17 +81,15 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("EnterLevel", true);
             StartCoroutine(AnimationWait());
         }
-        if (collision.tag == "Lvl2" && transform.position.x < 7.269-2.63f) {
-            RB.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezePositionX;
-            transform.position = new Vector2(7.269f - 2.63f, 0.3237126f - 2.63f);
+        if (collision.tag == "Lvl2" && ProgressScript.TotalProgress >= 2) {
             anim.SetBool("EnterLevel", true);
             StartCoroutine(AnimationWait2());
         }
-        if (collision.tag == "Lvl3") {
+        if (collision.tag == "Lvl3" && ProgressScript.TotalProgress >= 3) {
             anim.SetBool("EnterLevel", true);
             StartCoroutine(AnimationWait3());
         }
-        if (collision.tag == "Lvl4") {
+        if (collision.tag == "Lvl4" && ProgressScript.TotalProgress >= 4) {
             anim.SetBool("EnterLevel", true);
             StartCoroutine(AnimationWait4());
         }
@@ -100,6 +98,7 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator AnimationWait() {
         yield return new WaitForSeconds(0.8f);
         SceneManager.LoadScene(2, LoadSceneMode.Single);
+        ProgressScript.TotalProgress += 1;
     }
 
     IEnumerator AnimationWait2()  {
